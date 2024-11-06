@@ -11,8 +11,9 @@ const EditorApp = () => {
     const block = contentState.getBlockForKey(selection.getStartKey());
     const blockText = block.getText();
 
-    if (blockText.startsWith("# ") && !blockText.includes("# ")) {
-      const newContentState = Modifier.insertText(
+    ///// for heading type text
+    if (blockText.startsWith("# ")) {
+      const newContentState = Modifier.replaceText(
         contentState,
         selection.merge({
           anchorOffset: 0,
@@ -26,6 +27,7 @@ const EditorApp = () => {
         "remove-range"
       );
       setEditorState(RichUtils.toggleBlockType(newEditorState, "header-one"));
+      return "handled";
     }
   };
 
@@ -34,13 +36,15 @@ const EditorApp = () => {
       <div className="btn-container">
         <button className="btn-save">Save</button>
       </div>
-      <div className="editor-space">
-        Start Typing below...
-        <Editor
-          editorState={EditorState}
-          onChange={setEditorState}
-          handleBeforeInput={(chars) => handleBeforeInput(chars, editorState)}
-        />
+      <div className="utils">
+        <div className="editor-space">
+          <p>Start Typing below...</p>
+          <Editor
+            editorState={editorState}
+            onChange={setEditorState}
+            handleBeforeInput={(chars) => handleBeforeInput(chars, editorState)}
+          />
+        </div>
       </div>
     </div>
   );
