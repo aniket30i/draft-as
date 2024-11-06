@@ -28,6 +28,7 @@
 
 .editor-space {
   border: 2px solid red;
+  padding: 5px;
   width: 75%;
   display: flex;
   flex-direction: column;
@@ -38,4 +39,8 @@
 .utils {
   display: flex;
   justify-content: center;
+}
+
+.indication {
+  color: rgb(134, 136, 136);
 }

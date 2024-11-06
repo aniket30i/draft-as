@@ -29,6 +29,43 @@ const EditorApp = () => {
       setEditorState(RichUtils.toggleBlockType(newEditorState, "header-one"));
       return "handled";
     }
+    /////////for bold type text
+    if (blockText.startsWith("* ")) {
+      const newContentState = Modifier.replaceText(
+        contentState,
+        selection.merge({
+          anchorOffset: 0,
+          focusOffset: 2,
+        }),
+        ""
+      );
+      const newEditorState = EditorState.push(
+        editorState,
+        newContentState,
+        "remove-range"
+      );
+      setEditorState(RichUtils.toggleInlineStyle(newEditorState, "BOLD"));
+      return "handled";
+    }
+    ////////for red colored text
+    ////////for underlined text
+    if (blockText.startsWith("*** ")) {
+      const newContentState = Modifier.replaceText(
+        contentState,
+        selection.merge({
+          anchorOffset: 0,
+          focusOffset: 2,
+        }),
+        ""
+      );
+      const newEditorState = EditorState.push(
+        editorState,
+        newContentState,
+        "remove-range"
+      );
+      setEditorState(RichUtils.toggleInlineStyle(newEditorState, "UNDERLINE"));
+      return "handled";
+    }
   };
 
   return (
@@ -38,7 +75,7 @@ const EditorApp = () => {
       </div>
       <div className="utils">
         <div className="editor-space">
-          <p>Start Typing below...</p>
+          <p className="indication">Start Typing below...</p>
           <Editor
             editorState={editorState}
             onChange={setEditorState}
