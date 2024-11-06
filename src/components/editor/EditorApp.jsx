@@ -3,6 +3,11 @@ import "./Editor.css";
 import { Editor, EditorState, Modifier, RichUtils } from "draft-js";
 
 const EditorApp = () => {
+  const styleMap = {
+    RED: {
+      color: "red",
+    },
+  };
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
   const handleBeforeInput = (chars, editorState) => {
@@ -80,6 +85,7 @@ const EditorApp = () => {
             editorState={editorState}
             onChange={setEditorState}
             handleBeforeInput={(chars) => handleBeforeInput(chars, editorState)}
+            customStyleMap={styleMap}
           />
         </div>
       </div>
