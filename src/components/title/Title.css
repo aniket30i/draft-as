@@ -1,2 +1,6 @@
 .title-custom {
+  background-color: antiquewhite;
+  display: flex;
+  justify-content: center;
+  font-size: 3rem;
 }

@@ -1,0 +1,25 @@
+.editor-container {
+  width: 100%;
+  border: 2px solid black;
+  padding: 5px;
+  margin-top: 3rem;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 2rem;
+}
+.btn-save {
+  padding: 1rem;
+  border: none;
+  color: black;
+  background-color: rgb(182, 184, 185);
+  border-radius: 10px;
+  box-shadow: 2px 2px;
+}
+
+.btn-save:hover {
+  background-color: rgb(99, 102, 99);
+  color: white;
+}
