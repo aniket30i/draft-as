@@ -8,7 +8,9 @@ const EditorApp = () => {
       color: "red",
     },
   };
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const [editorState, setEditorState] = useState(() =>
+    EditorState.createEmpty()
+  );
 
   const handleBeforeInput = (chars, editorState) => {
     const contentState = editorState.getCurrentContent();
@@ -53,13 +55,31 @@ const EditorApp = () => {
       return "handled";
     }
     ////////for red colored text
+    if (blockText.startsWith("** ")) {
+      const newContentState = Modifier.replaceText(
+        contentState,
+        selection.merge({
+          anchorOffset: 0,
+          focusOffset: 3,
+        }),
+        ""
+      );
+      const newEditorState = EditorState.push(
+        editorState,
+        newContentState,
+        "remove-range"
+      );
+      setEditorState(RichUtils.toggleInlineStyle(newEditorState, "RED"));
+      return "handled";
+    }
+
     ////////for underlined text
     if (blockText.startsWith("*** ")) {
       const newContentState = Modifier.replaceText(
         contentState,
         selection.merge({
           anchorOffset: 0,
-          focusOffset: 2,
+          focusOffset: 4,
         }),
         ""
       );
@@ -71,6 +91,7 @@ const EditorApp = () => {
       setEditorState(RichUtils.toggleInlineStyle(newEditorState, "UNDERLINE"));
       return "handled";
     }
+    return "not-handled";
   };
 
   return (
