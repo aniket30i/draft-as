@@ -1,4 +1,5 @@
 import "./Editor.css";
+import { Editor, EditorState, RichUtils } from "draft-js";
 
 const Editor = () => {
   return (
