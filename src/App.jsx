@@ -1,8 +1,11 @@
-import { useState } from "react";
-import "./App.css";
+import MarkDownEditor from "./components/main-app/MarkDownEditor";
 
 function App() {
-  return <>Hi</>;
+  return (
+    <>
+      <MarkDownEditor />
+    </>
+  );
 }
 
 export default App;
