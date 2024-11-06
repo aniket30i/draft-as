@@ -19,6 +19,7 @@
   background-color: rgb(182, 184, 185);
   border-radius: 10px;
   box-shadow: 2px 2px;
+  cursor: pointer;
 }
 
 .btn-save:hover {
