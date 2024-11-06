@@ -25,6 +25,7 @@ const EditorApp = () => {
         newContentState,
         "remove-range"
       );
+      setEditorState(RichUtils.toggleBlockType(newEditorState, "header-one"));
     }
   };
 
@@ -34,6 +35,7 @@ const EditorApp = () => {
         <button className="btn-save">Save</button>
       </div>
       <div className="editor-space">
+        Start Typing below...
         <Editor
           editorState={EditorState}
           onChange={setEditorState}
