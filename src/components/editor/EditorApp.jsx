@@ -1,6 +1,13 @@
 import { useState } from "react";
 import "./Editor.css";
-import { Editor, EditorState, Modifier, RichUtils } from "draft-js";
+import {
+  convertToRaw,
+  convertFromRaw,
+  Editor,
+  EditorState,
+  Modifier,
+  RichUtils,
+} from "draft-js";
 
 const EditorApp = () => {
   const styleMap = {
@@ -8,9 +15,16 @@ const EditorApp = () => {
       color: "red",
     },
   };
-  const [editorState, setEditorState] = useState(() =>
-    EditorState.createEmpty()
-  );
+
+  const loadEditorState = () => {
+    const savedContent = localStorage.getItem("draftContent");
+    if (savedContent) {
+      const contentState = convertFromRaw(JSON.parse(savedContent));
+      return EditorState.createWithContent(contentState);
+    }
+    return EditorState.createEmpty();
+  };
+  const [editorState, setEditorState] = useState(loadEditorState);
 
   const handleBeforeInput = (chars, editorState) => {
     const contentState = editorState.getCurrentContent();
@@ -109,10 +123,19 @@ const EditorApp = () => {
     return "not-handled";
   };
 
+  const handleSave = () => {
+    const contentState = editorState.getCurrentContent();
+    const rawContent = convertToRaw(contentState);
+    localStorage.setItem("draftContent", JSON.stringify(rawContent));
+    console.log("saved on local", rawContent);
+  };
+
   return (
     <div className="editor-container">
       <div className="btn-container">
-        <button className="btn-save">Save</button>
+        <button className="btn-save" onClick={() => handleSave()}>
+          Save
+        </button>
       </div>
       <div className="utils">
         <div className="editor-space">
