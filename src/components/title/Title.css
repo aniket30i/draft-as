@@ -1,6 +1,14 @@
 .title-custom {
   background-color: antiquewhite;
+  width: 100%;
   display: flex;
   justify-content: center;
   font-size: 3rem;
+  text-align: center;
+}
+
+@media (max-width: 400px) {
+  .title-custom {
+    font-size: 1.5rem;
+  }
 }

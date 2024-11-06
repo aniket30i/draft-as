@@ -40,8 +40,15 @@
 .utils {
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
 .indication {
   color: rgb(134, 136, 136);
+}
+
+@media (max-width: 750px) {
+  .btn-container {
+    margin-bottom: 5px;
+  }
 }
