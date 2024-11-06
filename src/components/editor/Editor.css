@@ -23,3 +23,7 @@
   background-color: rgb(99, 102, 99);
   color: white;
 }
+
+.editor-space {
+  border: 2px solid red;
+}

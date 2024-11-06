@@ -1,10 +1,10 @@
 import Title from "../title/Title";
-import Editor from "../editor/Editor";
+import EditorApp from "../editor/EditorApp";
 const MarkDownEditor = () => {
   return (
     <div>
       <Title title={"Simple Markdown Editor"} />
-      <Editor />
+      <EditorApp />
     </div>
   );
 };
