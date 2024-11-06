@@ -6,5 +6,6 @@ export default defineConfig({
   plugins: [react()],
   define: {
     global: {},
+    "global.setImmediate": "function(callback) { setTimeout(callback, 0); }",
   },
 });
